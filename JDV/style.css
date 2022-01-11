@@ -1,0 +1,90 @@
+.item{
+    border: 1px solid blue;
+    height: 100px;
+    width: 100px;
+}
+
+h1 {
+    margin-left: 65px;
+}
+#botao {
+    padding: 20px;
+    margin: 20px;
+    margin-left: 98px;
+    background-color: #EEF;
+    border-radius: 10px;
+    font-weight: bold;
+}
+#botao:hover{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+#tabuleiro{
+    width: 310px;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+.item:hover{
+    background-color: #EEF;
+    transform: scale(1.05);
+}
+
+.icones {
+    height: 100%;
+    width: 100%;
+}
+
+#a1o {
+    display: none;
+}
+#a1x {
+    display: none;
+}
+#a2o {
+    display: none;
+}
+#a2x {
+    display: none;
+}
+#a3o {
+    display: none;
+}
+#a3x {
+    display: none;
+}
+#b1o {
+    display: none;
+}
+#b1x {
+    display: none;
+}
+#b2o {
+    display: none;
+}
+#b2x {
+    display: none;
+}
+#b3o {
+    display: none;
+}
+#b3x {
+    display: none;
+}
+#c1o {
+    display: none;
+}
+#c1x {
+    display: none;
+}
+#c2o {
+    display: none;
+}
+#c2x {
+    display: none;
+}
+#c3o {
+    display: none;
+}
+#c3x {
+    display: none;
+}
