@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bateria</title>
+</head>
+<body>
+    <h1>Bateria</h1>
+    <div class='drum'>
+        <span class='item'>boom[a]</span>
+        <span class='item'>clap[s]</span>
+        <span class='item'>hihat[d]</span>
+        <span class='item'>kick[f]</span>
+        <span class='item'>openhat[g]</span>
+        <span class='item'>ride[h]</span>
+        <span class='item'>snare[j]</span>
+        <span class='item'>tink[k]</span>
+        <span class='item'>tom[l]</span>
+    </div>
+
+    <style>
+        .drum {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 900px;
+            height: 100px;
+        }
+        .drum {
+            border-radius: 5px;
+            background-color: #eef;
+            
+        }
+    </style>
+    <script>
+        const boom = new Audio('sounds/boom.wav')
+        const clap = new Audio('sounds/clap.wav')
+        const hihat = new Audio('sounds/hihat.wav')
+        const kick = new Audio('sounds/kick.wav')
+        const openhat = new Audio('sounds/openhat.wav')
+        const ride = new Audio('sounds/ride.wav')
+        const snare = new Audio('sounds/snare.wav')
+        const tink = new Audio('sounds/tink.wav')
+        const tom = new Audio('sounds/tom.wav')
+
+        document.querySelector('body').addEventListener('keydown', function(event){
+            var tecla = event.keyCode
+            switch(tecla) {
+                case 65:
+                    boom.play()
+                    break
+                case 83:
+                    clap.play()
+                    break
+                case 68:
+                    hihat.play()
+                    break
+                case 70:
+                    kick.play()
+                    break
+                case 71:
+                    openhat.play()
+                    break
+                case 72:
+                    ride.play()
+                    break
+                case 74:
+                    snare.play()
+                    break
+                case 75:
+                    tink.play()
+                    break
+                case 76:
+                    tom.play()
+                    break
+            }
+        })
+    </script>
+</body>
+</html>
