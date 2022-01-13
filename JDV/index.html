@@ -5,55 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da velha</title>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Jogo da velha</h1>
-
-    <div id='tabuleiro'>
-        <div id='a1' class='item' onclick="JDV.Jogar('a', 1)">
-            <img src="imagens/o.png" id='a1o' class="icones">
-            <img src="imagens/x.png" id='a1x' class="icones">
-        </div>
-        <div id='a2' class='item' onclick="JDV.Jogar('a', 2)">
-            <img src="imagens/o.png" id='a2o' class="icones">
-            <img src="imagens/x.png" id='a2x' class="icones">
-        </div>
-        <div id='a3' class='item' onclick="JDV.Jogar('a', 3)">
-            <img src="imagens/o.png" id='a3o' class="icones">
-            <img src="imagens/x.png" id='a3x' class="icones">
-        </div>
-
-        <div id='b1' class='item' onclick="JDV.Jogar('b', 1)">
-            <img src="imagens/o.png" id='b1o' class="icones">
-            <img src="imagens/x.png" id='b1x' class="icones">
-        </div>
-        <div id='b2' class='item' onclick="JDV.Jogar('b', 2)">
-            <img src="imagens/o.png" id='b2o' class="icones">
-            <img src="imagens/x.png" id='b2x' class="icones">
-        </div>
-        <div id='b3' class='item' onclick="JDV.Jogar('b', 3)">
-            <img src="imagens/o.png" id='b3o' class="icones">
-            <img src="imagens/x.png" id='b3x' class="icones">
-        </div>
-
-        <div id='c1' class='item' onclick="JDV.Jogar('c', 1)">
-            <img src="imagens/o.png" id='c1o' class="icones">
-            <img src="imagens/x.png" id='c1x' class="icones">
-        </div>
-        <div id='c2' class='item' onclick="JDV.Jogar('c', 2)">
-            <img src="imagens/o.png" id='c2o' class="icones">
-            <img src="imagens/x.png" id='c2x' class="icones">
-        </div>
-        <div id='c3' class='item' onclick="JDV.Jogar('c', 3)">
-            <img src="imagens/o.png" id='c3o' class="icones">
-            <img src="imagens/x.png" id='c3x' class="icones">
-        </div>
-    </div>
-
+    
+    <section id='tabuleiro'>
+        <div id='00' class='item'></div>
+        <div id='01' class='item'></div>
+        <div id='02' class='item'></div>
+        <div id='10' class='item'></div>
+        <div id='11' class='item'></div>
+        <div id='12' class='item'></div>
+        <div id='20' class='item'></div>
+        <div id='21' class='item'></div>
+        <div id='22' class='item'></div>
+    </section>
+    
     <div>
         <input type="button" value="Novo Jogo" onclick="JDV.NovoJogo()" id='botao'>
     </div>
+    
+    <script src="code.js"></script>
+    <link rel="stylesheet" href="style.css">
 </body>
 </html>
