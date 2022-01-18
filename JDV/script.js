@@ -19,14 +19,11 @@ class JogoDaVelha {
         
         JDV.ObterVencedor()
     }
-    NovoJogo(){
+    NovoJogo() {
         location.reload()
     }
     InvalidOperationException() {
         alert('Posição já ocupada')
-    }
-    ArgumentOutRangeExeption() {
-        alert('Posição fora do tabuleiro')
     }
     ObterVencedor() {    //string que retorna 'o', 'x', ou 'null'
         let vencedor = ''   //recebe o vencedor
@@ -53,14 +50,31 @@ class JogoDaVelha {
 
         return vencedor
     }
+    CriarJogo() {
+        const newGame = document.createElement('div')
+        newGame.classList.add('tabuleiro')
+        newGame.innerHTML = `
+            <div id='00' class='item'></div>
+            <div id='01' class='item'></div>
+            <div id='02' class='item'></div>
+            <div id='10' class='item'></div>
+            <div id='11' class='item'></div>
+            <div id='12' class='item'></div>
+            <div id='20' class='item'></div>
+            <div id='21' class='item'></div>
+            <div id='22' class='item'></div>
+        `
+        document.getElementById('espaco').appendChild(newGame)
+    }
 }
 
 let JDV = new JogoDaVelha()
+JDV.CriarJogo()
 
 const pegaBotoesNoHTML = document.querySelectorAll('.item') //pega as DIVs correspondentes a cada quadrado no tabuleiro
 
 pegaBotoesNoHTML.forEach(function(teste) {
-    teste.addEventListener('click', function() {
+    teste.addEventListener('click', function(event) {
         //condicional que verifica se já tem algo dentro antes de enviar o ID onde clicou no HTML
         event.target.id != '' ? JDV.Jogar(event.target.id) : JDV.InvalidOperationException()
     })
