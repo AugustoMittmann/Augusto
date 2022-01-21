@@ -1,0 +1,81 @@
+body {
+    background-image: linear-gradient(rgb(235, 134, 18), #000,#FFF, rgb(235, 134, 18));
+}
+#relogio {
+    height: 500px;
+    width: 500px;
+    background-color: white;
+    border-radius: 100%;
+    border: solid 5px black;
+}
+.design {
+    position: fixed;
+    height: 10px;
+    width: 226px;
+    background-color: black;
+    margin-top: 250px;
+    margin-left: 22px;
+    transform-origin: 100%;
+}
+#horas {
+    width: 180px;
+    margin-left: 70px;
+    margin-top: 245px;
+}
+#segundos {
+    height: 5px;
+    background-color: rgb(235, 134, 18);
+}
+.numeros {
+    position: fixed;
+    color: black;
+    font-weight: bold;
+}
+#a1 {
+    margin-top: 37px;
+    margin-left: 364px;
+}
+#a2 {
+    margin-top: 127px;
+    margin-left: 453px;
+}
+#a3 {
+    margin-top: 245px;
+    margin-left: 484px;
+}
+#a4 {
+    margin-top: 368px;
+    margin-left: 449px;
+}
+#a5 {
+    margin-top: 450px;
+    margin-left: 363px;
+}
+#a6 {
+    margin-top: 481px;
+    margin-left: 245px;
+}
+#a7 {
+    margin-top: 449px;
+    margin-left: 127px;
+}
+#a8 {
+    margin-top: 363px;
+    margin-left: 40px;
+}
+#a9 {
+    margin-top: 244px;
+    margin-left: 6px;
+}
+#a10 {
+    margin-top: 125px;
+    margin-left: 36px;
+}
+#a11 {
+    margin-top: 37px;
+    margin-left: 122px;
+}
+#a12 {
+    margin-top: 4px;
+    margin-left: 241px;
+}
