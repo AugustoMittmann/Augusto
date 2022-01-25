@@ -4,28 +4,31 @@ function pares(string) {
     newString = newString.replace(/[^a-z]/gi,``)//remove o caractere que tem acento
     newString = newString.toLowerCase() //case insensitive 
     
-    var stringPares = []
+    const stringPares = []
     
     for(let a = 0; a < newString.length-1 ; a++) {//divide a string em um array de sílabas
         stringPares.push(newString[a] + newString[a+1])
     }
 
-    var final = []  //será retornada com arrays de 3 elementos indicando [repetições, sílaba, porcentagem]
-    var repeticoes = 0
-    var aux = 0
-
+    const final = []  //será retornada com arrays de 3 elementos indicando [repetições, sílaba, porcentagem]
+    
     stringPares.sort()  //organiza o array em ordem
-
+    
     for(let a = 0; a < stringPares.length; a++){    //bloco responsável por verificar o número de repetições de cada sílaba
+<<<<<<< HEAD
         if(stringPares[a] === stringPares[a+1]){
             aux = a
+=======
+        if(stringPares[a] == stringPares[a+1]){
+            let repeticoes = 0
+            let aux = a
+>>>>>>> 4e350228ba59731fbbeea024fe2b25de09989bc2
             do{
                 aux++
                 repeticoes++
             } while(stringPares[a] == stringPares[aux])
             final.push([repeticoes, stringPares[a], (repeticoes/stringPares.length*100).toFixed(2)])
             a += repeticoes-1
-            repeticoes = 0
         }
     }
     final.sort((a, b)=> { //organiza por ordem de %
