@@ -17,7 +17,7 @@ function pares(string) {
     stringPares.sort()  //organiza o array em ordem
 
     for(let a = 0; a < stringPares.length; a++){    //bloco responsável por verificar o número de repetições de cada sílaba
-        if(stringPares[a] == stringPares[a+1]){
+        if(stringPares[a] === stringPares[a+1]){
             aux = a
             do{
                 aux++

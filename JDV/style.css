@@ -2,9 +2,6 @@
     border: 1px solid blue;
     height: 100px;
     width: 100px;
-    transition: all 0.2s;
-    margin: 10px;
-    border-radius: 20%;
 }
 
 h1 {
@@ -22,14 +19,16 @@ h1 {
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-#tabuleiro{
-    width: 370px;
+#espaco{
+    width: 310px;
+}
+.tabuleiro {
     display: inline-flex;
     flex-wrap: wrap;
 }
 .item:hover{
     background-color: #EEF;
-    transform: rotate(360deg) scale(1.05);
+    transform: scale(1.05);
 }
 
 .icones {
