@@ -2,6 +2,9 @@
     border: 1px solid blue;
     height: 100px;
     width: 100px;
+    transition: all 0.2s;
+    margin: 10px;
+    border-radius: 20%;
 }
 
 h1 {
@@ -20,13 +23,13 @@ h1 {
 }
 
 #tabuleiro{
-    width: 310px;
+    width: 370px;
     display: inline-flex;
     flex-wrap: wrap;
 }
 .item:hover{
     background-color: #EEF;
-    transform: scale(1.05);
+    transform: rotate(360deg) scale(1.05);
 }
 
 .icones {
