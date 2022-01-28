@@ -1,7 +1,9 @@
 .item{
   border: 1px solid blue;
-  height: 100px;
-  width: 100px;
+  height: 97px;
+  width: 97px;
+  margin: 2px;
+  border-radius: 10%;
 }
 
 h1 {
@@ -25,17 +27,12 @@ h1 {
   flex-wrap: wrap;
 }
 .item:hover{
-  background-color: #EEF;
   transform: scale(1.05);
 }
 
-.icones {
+.img {
   height: 100%;
   width: 100%;
-}
-
-.img {
-  display: none;
 }
 
 .win {
@@ -49,4 +46,8 @@ h1 {
   font-size: 25px;
   border-radius: 10%;
   border: solid 1px blue;
+}
+
+.newGame {
+  margin: 50px 115px;
 }

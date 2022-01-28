@@ -1,120 +1,65 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 import './Style.css'
-import Icone from './Icone'
-
-let aux = false
+import Icone from "./Icone"
 
 
-function verificaVencedor(e) {
-  for(let a = 0; a < 3; a++) {
-    if(e[0][a] === e[1][a] && e[1][a] === e[2][a] && e[2][a] !== '') {
-      console.log(`Vencedor: ${e[0][a]}`)
-      return true
-    }
-    if(e[a][0] === e[a][1] && e[a][1] === e[a][2] && e[a][2] !== '') {
-      console.log(`Vencedor: ${e[a][0]}`)
-      return true
-    }
-    if(e[0][0] === e[1][1] && e[1][1] === e[2][2] && e[0][0] !== '') {
-      console.log(`Vencedor: ${e[0][0]}`)
-      return true
-    }
-    if(e[0][2] === e[1][1] && e[1][1] === e[2][0] && e[1][1] !== '') {
-      console.log(`Vencedor: ${e[1][1]}`)
-      return true
-    }
-  }
-}
-
-function atualizaInterface(element) {
-  element.forEach(function(e, index) {
-    for(let a = 0; a < 3; a++) {
-      if(e[a] !== '') {
-        document.getElementById(e[a] + index + a).style.display = 'block'
-      } else {
-        document.getElementById('x' + index + a).style.display = 'none'
-        document.getElementById('o' + index + a).style.display = 'none'
-      }
-    }
-  })
-}
-
-export default () => {
-  let turno
+const Tabuleiro = () => {
   const estadoInicial = [
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
   ]
-  let [situacaoDoJogo, setSituacaoDoJogo] = useState(estadoInicial)
+  const [situacaoDoJogo, setSituacaoDoJogo] = useState(estadoInicial)
+  const [currentPlayer, setCurrentPlayer] = useState('x')
   
-  function NovoJogo() {
-    console.log(situacaoDoJogo);
-    setSituacaoDoJogo(estadoInicial)
-    console.log(situacaoDoJogo);
-    atualizaInterface(situacaoDoJogo)
-    aux = false
+  function verificaVencedor(e) {
+    for(let a = 0; a < 3; a++) {
+      if(e[0][a] === e[1][a] && e[1][a] === e[2][a] && e[2][a] !== '') return e[0][a]  //coluna
+      if(e[a][0] === e[a][1] && e[a][1] === e[a][2] && e[a][2] !== '') return e[a][0] //linha
+    }
+    if(e[0][0] === e[1][1] && e[1][1] === e[2][2] && e[0][0] !== '') return e[0][0]
+    if(e[0][2] === e[1][1] && e[1][1] === e[2][0] && e[1][1] !== '') return e[0][2]
   }
 
-  function click(e) {
-    aux === true ? turno = 'o' : turno = 'x'
-    
-    if(verificaVencedor(situacaoDoJogo) === true) {
-      console.log('caiu aq');
-    } 
-    else {
-      const divPressionada = document.getElementById(turno + e.target.id)
-      if(divPressionada === null) {
-        console.log('ja clicou aqui');
-        aux = !aux
-      } else {
-        setSituacaoDoJogo(situacaoDoJogo => [...situacaoDoJogo], situacaoDoJogo[e.target.id[0]][e.target.id[1]] = turno)
-      }
-      aux = !aux
-      atualizaInterface(situacaoDoJogo)
+  function NovoJogo() {
+    setSituacaoDoJogo(estadoInicial)
+    setCurrentPlayer('x')
+  }
+  
+  function click(x, y) {
+    if(situacaoDoJogo[x][y] === '') {
+      setSituacaoDoJogo(situacaoDoJogo => situacaoDoJogo.map((linha, i) => {
+        return linha.map((celula, j) => {
+          if(x === i && y === j) {
+            return currentPlayer
+          }
+          return celula
+        })
+      }))
+      setCurrentPlayer(currentPlayer === 'x' ? 'o' : 'x')
+    } else {
+      console.log('This position already was click');
     }
   }
+  const winner = verificaVencedor(situacaoDoJogo)
 
   return (
     <div className="tabuleiro">
-
-      <div id='00' className='item' onClick={click}>
-        <Icone idx='x00' ido='o00'/>
-      </div>
-      <div id='01' className='item' onClick={click}>
-        <Icone idx='x01' ido='o01'/>
-      </div>
-      <div id='02' className='item' onClick={click}>
-        <Icone idx='x02' ido='o02'/>
-      </div>
-
-      <div id='10' className='item' onClick={click}>
-        <Icone idx='x10' ido='o10'/>
-      </div>
-      <div id='11' className='item' onClick={click}>
-        <Icone idx='x11' ido='o11'/>
-      </div>
-      <div id='12' className='item' onClick={click}>
-        <Icone idx='x12' ido='o12'/>
-      </div>
-
-      <div id='20' className='item' onClick={click}>
-        <Icone idx='x20' ido='o20'/>
-      </div>
-      <div id='21' className='item' onClick={click}>
-        <Icone idx='x21' ido='o21'/>
-      </div>
-      <div id='22' className='item' onClick={click}>
-        <Icone idx='x22' ido='o22'/>
-      </div>
-
-      {verificaVencedor(situacaoDoJogo)
-      ? <div>
-          <div className='win'>Temos um ganhador<br/>Novo Jogo?</div>
-          <input type="button" value="Sim" onClick={NovoJogo}/>
-        </div>
-      : <></>
-    }
+      {
+        situacaoDoJogo.map((linha, i) => {
+          return linha.map((celula, j) => {
+            return <div key={i+j} className='item' onClick={() => winner !== undefined ? null : click(i, j)}> 
+              <Icone id={celula} />
+            </div>
+          })
+        })
+      }
+      <input className='newGame' type="button" value="Novo jogo" onClick={NovoJogo}/>
+      {
+        winner ? <h1>Vencedor: {winner} </h1> : null 
+      }
     </div>
   )
 }
+
+export default Tabuleiro

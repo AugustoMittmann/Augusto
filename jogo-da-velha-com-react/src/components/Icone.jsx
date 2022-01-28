@@ -6,8 +6,9 @@ import x from './img/x.png'
 export default props => {
   return (
     <>
-      <img src={x} className="img" id={props.idx}/> 
-      <img src={o} className="img" id={props.ido}/>
+    {
+      props.id === '' ? null : <img src={props.id === 'x' ? x : o} className="img"/>
+    }
     </>
   )
 }
