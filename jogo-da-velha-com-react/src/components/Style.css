@@ -1,0 +1,32 @@
+.item{
+  border: 1px solid blue;
+  height: 100px;
+  width: 100px;
+}
+
+h1 {
+  margin-left: 65px;
+}
+.tabuleiro{
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  grid-gap: 5px;
+}
+.item:hover{
+  transform: scale(1.05);
+}
+
+.img {
+  height: 100%;
+  width: 100%;
+}
+
+.newGame {
+  margin: 50px 115px;
+  background-color: blue;
+  font-weight: bold;
+  color: white;
+  border-radius: 50%;
+  height: 80px;
+}
