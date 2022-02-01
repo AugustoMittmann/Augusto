@@ -1,10 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Tabuleiro from './components/Tabuleiro'
+import Geral from './components/Geral'
 
 ReactDOM.render(
   <div>
-    <h1>Jogo Da Velha</h1>
-    <Tabuleiro />
+    <Geral />
   </div>
 , document.getElementById('root'))

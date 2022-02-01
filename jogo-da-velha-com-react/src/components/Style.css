@@ -29,4 +29,34 @@ h1 {
   color: white;
   border-radius: 50%;
   height: 80px;
+  width: 80px;
+}
+
+.historicoDeJogos {
+  display: grid;
+  grid-template-columns: repeat(6, 70px);
+}
+
+.blocos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.historico {
+  height: 50px;
+  margin: 5px;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(400px, 1fr));
+}
+
+.littleIcons {
+  transform: scale(0.2);
+  transition: 0.5s;
+}
+.littleIcons:hover {
+  transform: scale(0.4);
+  transition: 0.5s;
 }

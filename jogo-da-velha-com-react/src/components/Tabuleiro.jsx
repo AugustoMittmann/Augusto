@@ -3,9 +3,8 @@ import './Style.css'
 import Icone from "./Icone"
 
 let historicoDeJogos = []
-let qntdVencedores = [0, 0]
 
-const Tabuleiro = () => {
+const Tabuleiro = props => {
   const estadoInicial = [
     ['', '', ''],
     ['', '', ''],
@@ -32,15 +31,13 @@ const Tabuleiro = () => {
   }
   
   function NovoJogo() {
-
     setSituacaoDoJogo(estadoInicial)
     setCurrentPlayer('x')
-    historicoDeJogos.push({situacaoDoJogo, winner})
-    console.table(historicoDeJogos)
+    historicoDeJogos.push(situacaoDoJogo)
   }
 
-  function callBackGame() {
-    setSituacaoDoJogo(historicoDeJogos[historicoDeJogos.length-1].situacaoDoJogo)
+  function salvarJogo(i) {
+    setSituacaoDoJogo(historicoDeJogos[i].situacaoDoJogo)
   }
   
   function click(x, y) {
@@ -57,35 +54,29 @@ const Tabuleiro = () => {
     } else {
       console.log('This position already was click')
     }
-    console.table(historicoDeJogos)
   }
   const winner = verificaVencedor(situacaoDoJogo)
 
   return (
     <>
+    <div className="section">
       <div className="tabuleiro">
-      {
-        situacaoDoJogo.map((linha, i) => {
-          return linha.map((celula, j) => {
-            return <div key={i+j} className='item' onClick={() => winner !== undefined ? null : click(i, j)}> 
-              <Icone id={celula} />
-            </div>
+        {
+          situacaoDoJogo.map((linha, i) => {
+            return linha.map((celula, j) => {
+              return <div key={i+j} className='item' onClick={() => winner !== undefined ? null : click(i, j)}> 
+                <Icone id={celula} />
+              </div>
+            })
           })
-        })
-      }
+        }
+        <input className='newGame' type="button" value="Novo jogo" onClick={NovoJogo}/>
+        <input className="newGame" type="button" value="Salvar Jogo" onClick={() => props.passandoValor(historicoDeJogos)} />
+        {
+          winner ? <h1>Vencedor: {winner} </h1> : null
+        }
       </div>
-      <input className='newGame' type="button" value="Novo jogo" onClick={NovoJogo}/>
-      <input className='newGame' type="button" value="Mostrar jogo anterior" onClick={callBackGame}/>
-      {
-        winner ? <h1>Vencedor: {winner} </h1> : null
-      }
-
-      <input list='oldGames' />
-      <datalist id='oldGames'>
-        <option value='jogo 1'/>
-        <option value='jogo 2'/>
-        <option value='jogo 3'/>
-      </datalist>
+    </div>
     </>
   )
 }
