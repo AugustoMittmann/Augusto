@@ -4,7 +4,7 @@ import Icone from "./Icone";
 
 const Historico = props => {
 
-  const [estado, setEstado] = useState([[],[],[]])
+  const [estado, setEstado] = useState()
   setEstado(props.historico)
 
   return (
@@ -16,7 +16,6 @@ const Historico = props => {
               return linha.map((celula, j) => {
                 return <div key={i+j} className='item' > 
                   <Icone id={celula} />
-                  {console.log('oi')}
                 </div>
               })
             })
