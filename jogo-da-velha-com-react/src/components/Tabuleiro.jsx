@@ -36,8 +36,8 @@ const Tabuleiro = props => {
     historicoDeJogos.push(situacaoDoJogo)
   }
 
-  function salvarJogo(i) {
-    setSituacaoDoJogo(historicoDeJogos[i].situacaoDoJogo)
+  function salvarJogo() {
+    props.passandoValor(historicoDeJogos)
   }
   
   function click(x, y) {
@@ -71,7 +71,7 @@ const Tabuleiro = props => {
           })
         }
         <input className='newGame' type="button" value="Novo jogo" onClick={NovoJogo}/>
-        <input className="newGame" type="button" value="Salvar Jogo" onClick={() => props.passandoValor(historicoDeJogos)} />
+        <input className="newGame" type="button" value="Salvar Jogo" onClick={() => salvarJogo()} />
         {
           winner ? <h1>Vencedor: {winner} </h1> : null
         }

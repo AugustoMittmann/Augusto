@@ -5,7 +5,6 @@ import Historico from "./Historico";
 
 const Geral = props => {
 
-  let jogoParaEnviar = []
   const [valorParaPassar, setValorParaPassar] = useState()
 
   const passandoValor = (situacaoDoJogo) => {
