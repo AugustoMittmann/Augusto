@@ -4,7 +4,7 @@ import Icone from "./Icone";
 
 const Historico = ({historico, removeJogo}) => {
 
-  function excluiJogoSalvo(id) {  //função para remover jogo salvo
+  function excluirJogoSalvo(id) {  //função para remover jogo salvo
     removeJogo(id)
   }
   return (
