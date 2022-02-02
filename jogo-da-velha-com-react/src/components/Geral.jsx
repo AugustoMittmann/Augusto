@@ -5,27 +5,25 @@ import Historico from "./Historico";
 
 const Geral = props => {
 
-  const [valorParaPassar, setValorParaPassar] = useState()
+  const [historico, setHistorico] = useState([])
 
-  const passandoValor = (situacaoDoJogo) => {
-    setValorParaPassar(situacaoDoJogo)
+  const atualizaHistorico = (situacaoDoJogo) => {
+    setHistorico(historico => [...historico, situacaoDoJogo])
+  }
+  const removeJogo = id => {
+    setHistorico([...historico].filter(historico => historico.idDoJogo !== id))
   }
 
   return (
     <div className="blocos">
       <div className="tabuleiro_">
         <h1>Jogo Da Velha</h1>
-        <Tabuleiro 
-        passandoValor={passandoValor}/>
+        <Tabuleiro atualizaHistorico={atualizaHistorico}/>
       </div>
 
       <div className="historico">
         <h1>Histórico</h1>
-        <Historico historico={valorParaPassar}/>
-      </div>
-
-      <div className="vencedores">
-        <h1>Vencedores</h1>
+        <Historico historico={historico} removeJogo={removeJogo}/>
       </div>
     </div>
   )

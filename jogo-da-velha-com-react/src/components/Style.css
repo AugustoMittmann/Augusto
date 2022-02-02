@@ -10,8 +10,9 @@ h1 {
 .tabuleiro{
   display: grid;
   grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
+  grid-template-rows: repeat(5, 100px);
   grid-gap: 5px;
+  align-items: center;
 }
 .item:hover{
   transform: scale(1.05);
@@ -22,31 +23,31 @@ h1 {
   width: 100%;
 }
 
-.newGame {
-  margin: 50px 115px;
-  background-color: blue;
-  font-weight: bold;
-  color: white;
-  border-radius: 50%;
-  height: 80px;
-  width: 80px;
-}
 
 .historicoDeJogos {
   display: grid;
-  grid-template-columns: repeat(6, 70px);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-rows: repeat(99, 120px);
 }
 
 .blocos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: 350px minmax(300px, 1fr);
+  grid-template-areas: 
+  "header sidebar1"
+  "sidebar2 footer";
 }
-
+.tabuleiro_ {
+  grid-area: header;
+}
 .historico {
-  height: 50px;
-  margin: 5px;
+  grid-area: sidebar1;
 }
-
+@media (max-width: 750px) {
+  .historico {
+    grid-area: sidebar2;
+  }
+}
 .section {
   display: grid;
   grid-template-columns: repeat(2, minmax(400px, 1fr));
@@ -57,6 +58,42 @@ h1 {
   transition: 0.5s;
 }
 .littleIcons:hover {
-  transform: scale(0.4);
+  transform: scale(0.3);
   transition: 0.5s;
+  z-index: 1;
+}
+.botoes_e_vencedor {
+  display: grid;
+  grid-template-columns: 105px 105px 105px;
+}
+.newGame {
+  background-color: blue;
+  font-weight: bold;
+  color: white;
+  border-radius: 40%;
+  height: 80px;
+  width: 90px;
+}
+.vencedor_ {
+  text-align: center;
+}
+.mini_item {
+  border: 1px solid blue;
+  height: 100px;
+  width: 100px;
+  background-color: white;
+}
+.mini_tabuleiro {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+}
+.mini_vencedor {
+  grid-column: span 3;
+  font-size: 50px;
+}
+.lixeira {
+  height: 70px;
+  grid-column: 4;
+  grid-row: span 4/3;
+  align-self: center;
 }

@@ -1,10 +1,9 @@
-import React, { useState } from "react"
+import React, { useState , useEffect} from "react"
 import './Style.css'
 import Icone from "./Icone"
 
-let historicoDeJogos = []
 
-const Tabuleiro = props => {
+const Tabuleiro = ({atualizaHistorico}) => {
   const estadoInicial = [
     ['', '', ''],
     ['', '', ''],
@@ -12,8 +11,16 @@ const Tabuleiro = props => {
   ]
   const [situacaoDoJogo, setSituacaoDoJogo] = useState(estadoInicial)
   const [currentPlayer, setCurrentPlayer] = useState('x')
+  const [flag, setFlag] = useState(false)
+  const [idDoJogo, setIdDoJogo] = useState(1)
+  const [historicoDeVencedores, setHistoricoDeVencedores] = useState({
+    x: 0,
+    empate: 0,
+    o: 0
+  })
   
   function verificaVencedor(e) {
+    let verificaEmpate = 0
     for(let a = 0; a < 3; a++) {
       if(e[0][a] === e[1][a] && e[1][a] === e[2][a] && e[2][a] !== '') {    //coluna
         return e[0][a]
@@ -28,19 +35,29 @@ const Tabuleiro = props => {
     if(e[0][2] === e[1][1] && e[1][1] === e[2][0] && e[1][1] !== '') {
       return e[0][2]
     }
+    e.map(linha => {
+       return linha.map(celula => {
+        return celula !== '' ? verificaEmpate++ : null
+      })
+    })
+    if(verificaEmpate === 9) return 'empate'
   }
   
   function NovoJogo() {
     setSituacaoDoJogo(estadoInicial)
     setCurrentPlayer('x')
-    historicoDeJogos.push(situacaoDoJogo)
-  }
-
-  function salvarJogo() {
-    props.passandoValor(historicoDeJogos)
+    setIdDoJogo(idDoJogo + 1)
+    setFlag(false)
   }
   
-  function click(x, y) {
+  function salvarJogo() {
+    setFlag(true)
+    if(flag === false) {
+      atualizaHistorico({situacaoDoJogo, resultados, idDoJogo})
+    }
+  }
+  
+  function onClick(x, y) {
     if(situacaoDoJogo[x][y] === '') {
       setSituacaoDoJogo(situacaoDoJogo => situacaoDoJogo.map((linha, i) => {
         return linha.map((celula, j) => {
@@ -55,7 +72,13 @@ const Tabuleiro = props => {
       console.log('This position already was click')
     }
   }
-  const winner = verificaVencedor(situacaoDoJogo)
+  const resultados = verificaVencedor(situacaoDoJogo)
+
+  useEffect(() => {
+    if(resultados) {
+      setHistoricoDeVencedores(historicoDeVencedores => ({...historicoDeVencedores, [resultados]:historicoDeVencedores[resultados]+1}))
+    }
+  }, [resultados])
 
   return (
     <>
@@ -64,17 +87,43 @@ const Tabuleiro = props => {
         {
           situacaoDoJogo.map((linha, i) => {
             return linha.map((celula, j) => {
-              return <div key={i+j} className='item' onClick={() => winner !== undefined ? null : click(i, j)}> 
+              return <div key={i+j} className='item' onClick={() => resultados !== undefined ? null : onClick(i, j)}> 
                 <Icone id={celula} />
               </div>
             })
           })
         }
-        <input className='newGame' type="button" value="Novo jogo" onClick={NovoJogo}/>
-        <input className="newGame" type="button" value="Salvar Jogo" onClick={() => salvarJogo()} />
-        {
-          winner ? <h1>Vencedor: {winner} </h1> : null
-        }
+        <div className="_botao_novojogo">
+          <input className='newGame' type="button" value="Novo jogo" onClick={NovoJogo}/>
+        </div>
+        <div className="botao_salvarjogo">
+          <input className="newGame" type="button" value="Salvar Jogo" onClick={() => salvarJogo()} />
+        </div>
+        <div className="vencedor_">
+          <h3>Vencedor: </h3>
+          {
+            resultados ? <h3 className="icone_vencedor">{resultados}</h3> : null
+          }
+        </div>
+
+        <div className="vencedor_">
+          <h3>Vitórias x</h3>
+          {
+            <h3>{historicoDeVencedores.x}</h3>
+          }
+        </div>
+        <div className="vencedor_">
+          <h3>Empates</h3>
+          {
+            <h3>{historicoDeVencedores.empate}</h3>
+          }
+        </div>
+        <div className="vencedor_">
+          <h3>Vitórias o</h3>
+          {
+            <h3>{historicoDeVencedores.o}</h3>
+          }
+        </div>
       </div>
     </div>
     </>
