@@ -1,7 +1,14 @@
+@keyframes fade-in {
+  from {opacity: 0}
+  to {opacity: 1}
+}
+
 .item{
   border: 1px solid blue;
   height: 100px;
   width: 100px;
+  border-radius: 10%;
+  overflow: hidden;
 }
 
 h1 {
@@ -11,7 +18,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(5, 100px);
-  grid-gap: 5px;
+  grid-gap: 8px;
   align-items: center;
 }
 .item:hover{
@@ -21,6 +28,8 @@ h1 {
 .img {
   height: 100%;
   width: 100%;
+  opacity: 0;
+  animation: fade-in 1s normal forwards ease-in-out;
 }
 
 
