@@ -4,7 +4,7 @@ import Icone from "./Icone";
 
 const Historico = ({historico, removeJogo}) => {
 
-  function excluir(id) {
+  function excluiJogoSalvo(id) {  //função para remover jogo salvo
     removeJogo(id)
   }
   return (
@@ -13,7 +13,7 @@ const Historico = ({historico, removeJogo}) => {
         historico.map(array => {
             return <div key={array.idDoJogo} className="littleIcons mini_tabuleiro">
             <h4 className="mini_vencedor">Vencedor: {array.resultados}</h4>
-            <img src='https://cdn.icon-icons.com/icons2/1489/PNG/512/rubbishbin_102620.png'className="lixeira" onClick={() => excluir(array.idDoJogo)}/>
+            <img src='https://cdn.icon-icons.com/icons2/1489/PNG/512/rubbishbin_102620.png'className="lixeira" onClick={() => excluirJogoSalvo(array.idDoJogo)}/>
               {
               array.situacaoDoJogo.map((linha, i) => {
                 return linha.map((celula, j) => {

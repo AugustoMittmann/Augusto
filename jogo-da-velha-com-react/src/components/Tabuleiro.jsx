@@ -11,16 +11,15 @@ const Tabuleiro = ({atualizaHistorico}) => {
   ]
   const [situacaoDoJogo, setSituacaoDoJogo] = useState(estadoInicial)
   const [currentPlayer, setCurrentPlayer] = useState('x')
-  const [flag, setFlag] = useState(false)
+  const [flag, setFlag] = useState(false) //verifica se o usuário já salvou o jogo atual, evita que ele salve 2 vezes o mesmo jogo
   const [idDoJogo, setIdDoJogo] = useState(1)
-  const [historicoDeVencedores, setHistoricoDeVencedores] = useState({
+  const [historicoDeVencedores, setHistoricoDeVencedores] = useState({  //salva as vitorias e empates em cada round
     x: 0,
     empate: 0,
     o: 0
   })
   
   function verificaVencedor(e) {
-    let verificaEmpate = 0
     for(let a = 0; a < 3; a++) {
       if(e[0][a] === e[1][a] && e[1][a] === e[2][a] && e[2][a] !== '') {    //coluna
         return e[0][a]
@@ -29,12 +28,13 @@ const Tabuleiro = ({atualizaHistorico}) => {
         return e[a][0]
       }
     }
-    if(e[0][0] === e[1][1] && e[1][1] === e[2][2] && e[0][0] !== '') { 
+    if(e[0][0] === e[1][1] && e[1][1] === e[2][2] && e[0][0] !== '') { //diagonal
       return e[0][0]
     }
-    if(e[0][2] === e[1][1] && e[1][1] === e[2][0] && e[1][1] !== '') {
+    if(e[0][2] === e[1][1] && e[1][1] === e[2][0] && e[1][1] !== '') {  //diagonal
       return e[0][2]
     }
+    let verificaEmpate = 0  //soma 1 cada vez que encontra uma div não vazia, se chegar a 9 e a função não retornar vencedor, retorna empate
     e.map(linha => {
        return linha.map(celula => {
         return celula !== '' ? verificaEmpate++ : null
@@ -44,7 +44,7 @@ const Tabuleiro = ({atualizaHistorico}) => {
   }
   
   function NovoJogo() {
-    setSituacaoDoJogo(estadoInicial)
+    setSituacaoDoJogo(estadoInicial) 
     setCurrentPlayer('x')
     setIdDoJogo(idDoJogo + 1)
     setFlag(false)
@@ -53,13 +53,13 @@ const Tabuleiro = ({atualizaHistorico}) => {
   function salvarJogo() {
     setFlag(true)
     if(flag === false) {
-      atualizaHistorico({situacaoDoJogo, resultados, idDoJogo})
+      atualizaHistorico({situacaoDoJogo, resultados, idDoJogo}) //envia para o componen Historico o {jogo, se alguem venceu e quem venceu, id}
     }
   }
   
   function onClick(x, y) {
     if(situacaoDoJogo[x][y] === '') {
-      setSituacaoDoJogo(situacaoDoJogo => situacaoDoJogo.map((linha, i) => {
+      setSituacaoDoJogo(situacaoDoJogo => situacaoDoJogo.map((linha, i) => { 
         return linha.map((celula, j) => {
           if(x === i && y === j) {
             return currentPlayer
@@ -67,16 +67,16 @@ const Tabuleiro = ({atualizaHistorico}) => {
           return celula
         })
       }))
-      setCurrentPlayer(currentPlayer === 'x' ? 'o' : 'x')
+      setCurrentPlayer(currentPlayer === 'x' ? 'o' : 'x') //alterna o jogador cada rodada
     } else {
       console.log('This position already was click')
     }
   }
-  const resultados = verificaVencedor(situacaoDoJogo)
+  const resultados = verificaVencedor(situacaoDoJogo) //verifica se alguem venceu no atual round
 
   useEffect(() => {
     if(resultados) {
-      setHistoricoDeVencedores(historicoDeVencedores => ({...historicoDeVencedores, [resultados]:historicoDeVencedores[resultados]+1}))
+      setHistoricoDeVencedores(historicoDeVencedores => ({...historicoDeVencedores, [resultados]:historicoDeVencedores[resultados]+1})) //adiciona +1 no x, empate ou o
     }
   }, [resultados])
 

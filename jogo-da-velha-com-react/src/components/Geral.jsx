@@ -7,10 +7,10 @@ const Geral = props => {
 
   const [historico, setHistorico] = useState([])
 
-  const atualizaHistorico = (situacaoDoJogo) => {
+  const atualizaHistorico = (situacaoDoJogo) => {   //faz a pilha e envia o jogo do Tabuleiro para o Histórico
     setHistorico(historico => [...historico, situacaoDoJogo])
   }
-  const removeJogo = id => {
+  const removeJogo = id => {    //remove o jogo salvo
     setHistorico([...historico].filter(historico => historico.idDoJogo !== id))
   }
 
