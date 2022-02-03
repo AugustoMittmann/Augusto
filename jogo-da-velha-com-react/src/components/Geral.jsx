@@ -17,12 +17,12 @@ const Geral = props => {
   return (
     <div className="blocos">
       <div className="tabuleiro_">
-        <h1>Jogo Da Velha</h1>
+        <h1 className="color_white">Jogo Da Velha</h1>
         <Tabuleiro atualizaHistorico={atualizaHistorico}/>
       </div>
 
       <div className="historico">
-        <h1>Histórico</h1>
+        <h1 className="color_white">Histórico</h1>
         <Historico historico={historico} removeJogo={removeJogo}/>
       </div>
     </div>
